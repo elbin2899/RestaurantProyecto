@@ -1,5 +1,5 @@
 <?php
-include('db.php');
+include('../db.php');
 
 // 1. Verifica si se pasó un ID por GET
 if (!isset($_GET['id'])) {

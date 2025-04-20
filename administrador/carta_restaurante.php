@@ -1,4 +1,4 @@
-<?php include('db.php'); ?>
+<?php include('../db.php'); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,6 +12,11 @@
 <body class="bg-light">
 
 <div class="container mt-5">
+    <div style="text-align: right; padding: 15px;">
+    <a href="../administrador.php" style="text-decoration: none; color: #0F172B; font-weight: 600;" onmouseover="this.style.color='#FEA116'" onmouseout="this.style.color='#0F172B'">
+        Página principal
+    </a>
+</div>
     <h1 class="mb-4">📋 Gestión de la Carta del Restaurante</h1>
 
     <!-- Formulario para añadir categoría -->
@@ -104,7 +109,7 @@
                                 <td>
                                     <div class='btn-group d-flex flex-column align-items-center gap-1'>
                                         {$estado}
-                                        <a href='toggle_plato.php?id={$row['id_item']}' class='btn btn-sm btn-warning' title='" . ($row['activo'] ? 'Ocultar' : 'Activar') . "'>
+                                        <a href='ocultar_plato.php?id={$row['id_item']}' class='btn btn-sm btn-warning' title='" . ($row['activo'] ? 'Ocultar' : 'Activar') . "'>
                                             <i class='fas " . ($row['activo'] ? 'fa-eye-slash' : 'fa-eye') . "'></i>
                                         </a>
                                     </div>
@@ -129,6 +134,5 @@
     </div>
 
 </div>
-
 </body>
 </html>

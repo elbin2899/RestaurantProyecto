@@ -1,5 +1,5 @@
 <?php
-include('db.php');
+include('../db.php');
 $id = $_GET['id'];
 
 $query = "DELETE FROM item_menu WHERE id_item = $id";
