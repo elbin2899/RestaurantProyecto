@@ -55,10 +55,12 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'admin') {
     </style>
 </head>
 <body>
+
     <div class="mensaje">
         <i class="fas fa-user-shield"></i>
         <h1>Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario']); ?> 👋</h1>
         <p>Has ingresado correctamente al panel del administrador.</p>
+        <a href="administrador/gestionar_reservas.php" class="btn btn-primary">Gestionar Reservas</a>
         <a href="administrador/carta_restaurante.php" class="btn btn-outline-dark my-3">
         <i class="fas fa-utensils"></i> Ver / Editar Carta
     </div>

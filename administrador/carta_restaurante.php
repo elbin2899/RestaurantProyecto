@@ -16,7 +16,7 @@
     <a href="../administrador.php" style="text-decoration: none; color: #0F172B; font-weight: 600;" onmouseover="this.style.color='#FEA116'" onmouseout="this.style.color='#0F172B'">
         Página principal
     </a>
-</div>
+    </div>
     <h1 class="mb-4">📋 Gestión de la Carta del Restaurante</h1>
 
     <!-- Formulario para añadir categoría -->
