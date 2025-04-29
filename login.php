@@ -42,10 +42,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             exit;
         } else {
-            echo '<div class="error-message">Contraseña incorrecta. <a href="index.html">Volver</a></div>';
+            echo '<div class="error-message">Contraseña incorrecta. <a href="index.php">Volver</a></div>';
         }
     } else {
-        echo '<div class="error-message">Usuario no encontrado. <a href="index.html">Volver</a></div>';
+        echo '<div class="error-message">Usuario no encontrado. <a href="index.php">Volver</a></div>';
     }
 
     // Cerrar recursos
