@@ -1,11 +1,12 @@
-<?php
+<?php 
 session_start();
 
-// Validar si el usuario ha iniciado sesión y tiene rol 'admin'
-if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: index.html"); // Redirige si no tiene acceso
+// Validar si el usuario ha iniciado sesión y tiene rol 'admin' o 'emple'
+if (!isset($_SESSION['usuario']) || !in_array($_SESSION['rol'], ['admin', 'empleado'])) {
+    header("Location: index.html");
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -13,62 +14,112 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'admin') {
 <head>
     <meta charset="UTF-8">
     <title>Panel del Administrador</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
-            text-align: center;
-            padding-top: 100px;
-        }
-        .mensaje {
-            background: white;
-            display: inline-block;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        }
-        .mensaje h1 {
-            color: #2c3e50;
-        }
-        .mensaje i {
-            color: #3498db;
-            font-size: 50px;
-        }
-       
-        .btn-cerrar {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #e74c3c;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .btn-cerrar:hover {
-            background-color: #c0392b;
-        }
-</style>
-
-    </style>
 </head>
-<body>
 
-    <div class="mensaje">
-        <i class="fas fa-user-shield"></i>
-        <h1>Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario']); ?> 👋</h1>
-        <p>Has ingresado correctamente al panel del administrador.</p>
-        <a href="administrador/gestionar_reservas.php" class="btn btn-primary">Gestionar Reservas</a>
-        <a href="administrador/carta_restaurante.php" class="btn btn-outline-dark my-3">
-        <i class="fas fa-utensils"></i> Ver / Editar Carta
-    </div>
-    
-</a>
+<body class="d-flex flex-column min-vh-100 bg-light">
 
-    <p><a href="logout.php" class="btn-cerrar">Cerrar sesión</a></p>
+    <!-- NAVBAR RESPONSIVO -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                <?php if (isset($_SESSION['usuario'])): ?>
+                    <span class="small text-white">
+                        <i class="fas fa-user me-2"></i><?= htmlspecialchars($_SESSION['usuario']) ?>
+                    </span>
+                <?php endif; ?>
+            </a>
 
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin" aria-controls="navbarAdmin" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarAdmin">
+                <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center">
+                    <?php if (
+                    (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') ||
+                    (isset($_SESSION['rol'], $_SESSION['usuario']) && $_SESSION['rol'] === 'empleado' && $_SESSION['usuario'] === 'empleado')
+                        ): ?>
+                        <li class="nav-item me-2">
+                            <a href="administrador/gestionar_reservas.php" class="btn btn-outline-light">
+                                <i class="fas fa-calendar-check me-1"></i>Gestionar Reservas
+                            </a>
+                        </li>
+                    <?php endif; ?>
+
+                    <?php if (
+                    (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') ||
+                    (isset($_SESSION['rol'], $_SESSION['usuario']) && $_SESSION['rol'] === 'empleado' && $_SESSION['usuario'] === 'head_chef')
+                        ): ?>
+                        <li class="nav-item me-2">
+                            <a href="administrador/carta_restaurante.php" class="btn btn-outline-light">
+                                <i class="fas fa-utensils me-1"></i>Ver / Editar Carta
+                            </a>
+                        </li>
+                    <?php endif; ?>
+
+                    <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
+                        <li class="nav-item me-2">
+                            <a href="administrador/agregar_usuario.php" class="btn btn-outline-light">
+                                <i class="fas fa-user-plus me-1"></i>Agregar Usuario
+                            </a>
+                        </li>
+                    <?php endif; ?>
+
+                    <li class="nav-item">
+                        <a href="logout.php" class="btn btn-danger">
+                            <i class="fas fa-sign-out-alt me-1"></i>Salir
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container my-5 flex-grow-1 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-6 bg-white p-5 rounded shadow-sm text-center">
+            <div class="display-4 text-primary mb-3">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <h2 class="fw-bold">Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario']); ?> 👋</h2>
+            <p class="text-muted mb-4">Has ingresado correctamente al panel del administrador.</p>
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                <?php if (
+                (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') ||
+                (isset($_SESSION['rol'], $_SESSION['usuario']) && $_SESSION['rol'] === 'empleado' && $_SESSION['usuario'] === 'empleado')
+                ): ?>
+                    <a href="administrador/gestionar_reservas.php" class="btn btn-primary btn-lg">
+                        <i class="fas fa-calendar-check me-2"></i>Gestionar Reservas
+                    </a>
+                <?php endif; ?>
+
+                <?php if (
+                (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') ||
+                (isset($_SESSION['rol'], $_SESSION['usuario']) && $_SESSION['rol'] === 'empleado' && $_SESSION['usuario'] === 'head_chef')
+                ): ?>
+                <a href="administrador/carta_restaurante.php" class="btn btn-dark btn-lg">
+                    <i class="fas fa-utensils me-2"></i>Ver / Editar Carta
+                </a>
+                <?php endif; ?>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        © 2025 Cuisine X - Panel de Administración
+    </footer>
+
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
+
+
 

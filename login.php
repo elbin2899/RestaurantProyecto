@@ -35,11 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['rol'] = $rol;
 
             // Redirigir según el rol
-            if ($rol === 'admin') {
+            if ($rol === 'admin' || $rol === 'empleado') {
                 header("Location: administrador.php");
             } else {
-                header("Location: index.html");
-            }
+                header("Location: index.php");
+            }            
             exit;
         } else {
             echo '<div class="error-message">Contraseña incorrecta. <a href="index.php">Volver</a></div>';
