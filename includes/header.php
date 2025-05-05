@@ -43,9 +43,9 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <div class="row align-items-center g-5">
             <div class="col-lg-6 text-center text-lg-start">
                 <h1 class="display-3 text-white animated slideInLeft">Disfruta Nuestra<br>Deliciosa Comida</h1>
-                <p class="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam
-                    ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita
-                    duo justo magna dolore erat amet</p>
+                <p class="text-white animated slideInLeft mb-4 pb-2">Ven y experimenta una explosión de sabores en cada plato. Ofrecemos comida elaborada con
+                    ingredientes frescos, pensada para satisfacer todos los gustos. ¡Déjate sorprender por nuestra
+                    cocina!</p>
                 <a href="#reserva" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Reservar</a>
             </div>
             <div class="col-lg-6 text-center text-lg-end overflow-hidden">

@@ -10,15 +10,15 @@
                 <div class="row gy-4">
                     <div class="col-md-4">
                         <h5 class="section-title ff-secondary fw-normal text-start text-primary">Reservas</h5>
-                        <p><i class="fa fa-envelope-open text-primary me-2"></i>reservas@ejemplo.com</p>
+                        <p><i class="fa fa-envelope-open text-primary me-2"></i>reservas@cuisine.com</p>
                     </div>
                     <div class="col-md-4">
                         <h5 class="section-title ff-secondary fw-normal text-start text-primary">Información general</h5>
-                        <p><i class="fa fa-envelope-open text-primary me-2"></i>info@ejemplo.com</p>
+                        <p><i class="fa fa-envelope-open text-primary me-2"></i>info@cuisine.com</p>
                     </div>
                     <div class="col-md-4">
                         <h5 class="section-title ff-secondary fw-normal text-start text-primary">Soporte técnico</h5>
-                        <p><i class="fa fa-envelope-open text-primary me-2"></i>tecnico@ejemplo.com</p>
+                        <p><i class="fa fa-envelope-open text-primary me-2"></i>tecnico@cuisine.com</p>
                     </div>
                 </div>
             </div>
