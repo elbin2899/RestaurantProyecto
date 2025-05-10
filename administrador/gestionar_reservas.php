@@ -12,12 +12,24 @@ if (!isset($_SESSION['rol']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['rol'
 if (isset($_GET['eliminar']) && $_SESSION['rol'] === 'admin') {
     $id_reserva = intval($_GET['eliminar']);
     mysqli_query($conn, "DELETE FROM reserva WHERE id_reserva = $id_reserva");
-    header('Location: gestionar_reservas.php');
+    header('Location: gestionar_reservas.php?eliminacion=exitosa');
+    exit;
+}
+
+// 🔁 Cambio rápido de estado desde el dropdown en la tabla
+if (isset($_POST['cambiar_estado'])) {
+    $id = intval($_POST['id_reserva']);
+    $nuevoEstado = $_POST['estado'];
+
+    mysqli_query($conn, "UPDATE reserva SET estado = '$nuevoEstado' WHERE id_reserva = $id");
+
+    header('Location: gestionar_reservas.php?modificacion=exitosa');
     exit;
 }
 
 // Lógica para crear o actualizar una reserva
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     $id_reserva = isset($_POST['id_reserva']) ? intval($_POST['id_reserva']) : null;
     $nombre = $_POST['nombre'];
     $email = $_POST['email'];
@@ -25,7 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fecha = $_POST['fecha'];
     $hora = $_POST['hora'];
     $personas = $_POST['personas'];
-    $estado = $_POST['estado'];
+
+    // Al crear es "confirmada", pero si viene por edición permitimos estado personalizado
+    $estado = isset($_POST['estado']) ? $_POST['estado'] : "confirmada";
 
     // Insertar cliente si no existe
     $query = "SELECT id_cliente FROM cliente WHERE email = '$email'";
@@ -56,7 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "INSERT INTO reserva (id_cliente, fecha, hora, numero_personas, estado) VALUES ($id_cliente, '$fecha', '$hora', $personas, '$estado')";
     }
     mysqli_query($conn, $sql);
-    header('Location: gestionar_reservas.php');
+    if ($id_reserva) {
+        header('Location: gestionar_reservas.php?edicion=exitosa');
+    } else {
+        header('Location: gestionar_reservas.php?creacion=exitosa');
+    }
     exit;
 }
 
@@ -95,6 +113,32 @@ $reservas = mysqli_query($conn, "SELECT r.*, c.nombre AS cliente, c.email, c.tel
         </div>
     <?php endif; ?>
 
+    <?php if (isset($_GET['modificacion']) && $_GET['modificacion'] === 'exitosa') : ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>¡Reserva modificada!</strong> El estado ha sido actualizado correctamente.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    <?php endif; ?>
+    <?php if (isset($_GET['creacion']) && $_GET['creacion'] === 'exitosa') : ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>¡Reserva guardada!</strong> La reserva ha sido registrada correctamente.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    <?php endif; ?>
+    <?php if (isset($_GET['edicion']) && $_GET['edicion'] === 'exitosa') : ?>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>¡Reserva actualizada!</strong> Los datos han sido modificados correctamente.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['eliminacion']) && $_GET['eliminacion'] === 'exitosa') : ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>¡Reserva eliminada!</strong> La reserva ha sido borrada correctamente.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    <?php endif; ?>
+
     <form method="POST" class="mb-5 p-4 bg-white shadow rounded">
         <input type="hidden" name="id_reserva" id="id_reserva">
         <div class="row g-3">
@@ -111,13 +155,6 @@ $reservas = mysqli_query($conn, "SELECT r.*, c.nombre AS cliente, c.email, c.tel
             <div class="col-md-4"><input type="date" name="fecha" class="form-control" id="fecha" required></div>
             <div class="col-md-4"><select name="hora" class="form-control" id="hora" required></select></div>
             <div class="col-md-2"><input type="number" name="personas" class="form-control" min="1" max="8" placeholder="# Personas" required></div>
-            <div class="col-md-2">
-                <select name="estado" class="form-select">
-                    <option value="pendiente">Pendiente</option>
-                    <option value="confirmada">Confirmada</option>
-                    <option value="cancelada">Cancelada</option>
-                </select>
-            </div>
             <div class="col-12"><button class="btn btn-success w-100"><i class="fas fa-save"></i> Guardar Reserva</button></div>
         </div>
     </form>
@@ -140,7 +177,17 @@ $reservas = mysqli_query($conn, "SELECT r.*, c.nombre AS cliente, c.email, c.tel
                         <td><?= $r['fecha'] ?></td>
                         <td><?= $r['hora'] ?></td>
                         <td><?= $r['numero_personas'] ?></td>
-                        <td><span class="badge bg-<?= $r['estado'] === 'pendiente' ? 'warning' : ($r['estado'] === 'confirmada' ? 'success' : 'danger') ?>"><?= ucfirst($r['estado']) ?></span></td>
+                        <td>
+                            <form method="POST" action="gestionar_reservas.php" class="d-flex align-items-center">
+                                <input type="hidden" name="cambiar_estado" value="1">
+                                <input type="hidden" name="id_reserva" value="<?= $r['id_reserva'] ?>">
+                                <select name="estado" class="form-select form-select-sm me-2" onchange="this.form.submit()">
+                                    <option value="confirmada" <?= $r['estado'] === 'confirmada' ? 'selected' : '' ?>>Confirmada</option>
+                                    <option value="cancelada" <?= $r['estado'] === 'cancelada' ? 'selected' : '' ?>>Cancelada</option>
+                                </select>
+                            </form>
+                        </td>
+
                         <td><?= $r['numero_mesa'] ? $r['numero_mesa'] : '—' ?></td>
                         <td>
                             <a href="#" onclick="cargarDatosReserva('<?= $r['id_reserva'] ?>', '<?= $r['cliente'] ?>', '<?= $r['email'] ?>', '<?= $r['telefono'] ?>', '<?= $r['fecha'] ?>', '<?= $r['hora'] ?>', '<?= $r['numero_personas'] ?>', '<?= $r['estado'] ?>')" class="btn btn-sm btn-primary">
