@@ -42,7 +42,7 @@ $conn->close();
     <!-- NAVBAR simple -->
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="../administrador.php">
+            <a class="navbar-brand fw-bold" href="../panel">
                 <i class="fas fa-arrow-left me-2"></i>Volver al Panel
             </a>
         </div>

@@ -13,7 +13,7 @@
 
 <div class="container mt-5">
     <div style="text-align: right; padding: 15px;">
-    <a href="../administrador.php" style="text-decoration: none; color: #0F172B; font-weight: 600;" onmouseover="this.style.color='#FEA116'" onmouseout="this.style.color='#0F172B'">
+    <a href="../panel" style="text-decoration: none; color: #0F172B; font-weight: 600;" onmouseover="this.style.color='#FEA116'" onmouseout="this.style.color='#0F172B'">
         Página principal
     </a>
     </div>

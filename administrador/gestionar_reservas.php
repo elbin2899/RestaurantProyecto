@@ -8,8 +8,8 @@ if (!isset($_SESSION['rol']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['rol'
     exit;
 }
 
-// Lógica para eliminar (solo admin)
-if (isset($_GET['eliminar']) && $_SESSION['rol'] === 'admin') {
+// Lógica para eliminar (solo admin y empleado)
+if (isset($_GET['eliminar']) && ($_SESSION['rol'] === 'admin' || $_SESSION['rol'] === 'empleado')) {
     $id_reserva = intval($_GET['eliminar']);
     mysqli_query($conn, "DELETE FROM reserva WHERE id_reserva = $id_reserva");
     header('Location: gestionar_reservas.php?eliminacion=exitosa');
@@ -52,16 +52,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id_cliente = mysqli_insert_id($conn);
     }
 
-    // Validación para evitar duplicados por fecha, hora y número de personas
-    $check_sql = "SELECT id_reserva FROM reserva WHERE fecha = '$fecha' AND hora = '$hora' AND numero_personas = $personas";
-    if ($id_reserva) {
-           $check_sql .= " AND id_reserva != $id_reserva";
-    }
-    $check_result = mysqli_query($conn, $check_sql);
-    if (mysqli_num_rows($check_result) > 0) {
-        echo "<script>alert('Ya existe una reserva con la misma fecha, hora y número de personas.'); window.location.href = 'gestionar_reservas.php';</script>";
-        exit;
-    }
+    // Buscar la mesa más pequeña posible que pueda acomodar a esa cantidad de personas
+$consulta_capacidad = "
+SELECT capacidad FROM mesa 
+WHERE capacidad >= ? 
+ORDER BY capacidad ASC 
+LIMIT 1
+";
+$stmt1 = $conn->prepare($consulta_capacidad);
+$stmt1->bind_param("i", $personas);
+$stmt1->execute();
+$res1 = $stmt1->get_result();
+
+if ($res1->num_rows === 0) {
+echo "<script>alert('No hay mesas adecuadas disponibles.'); window.location.href = 'gestionar_reservas.php';</script>";
+exit;
+}
+
+$capacidad_minima = $res1->fetch_assoc()['capacidad'];
+
+// 1. Total de mesas con esa capacidad
+$sql_total_mesas = "SELECT COUNT(*) as total FROM mesa WHERE capacidad = ?";
+$stmt2 = $conn->prepare($sql_total_mesas);
+$stmt2->bind_param("i", $capacidad_minima);
+$stmt2->execute();
+$res2 = $stmt2->get_result();
+$total_mesas = $res2->fetch_assoc()['total'];
+
+// 2. Cuántas de esas ya están ocupadas en esa fecha y hora
+$sql_reservadas = "
+SELECT COUNT(*) as total FROM reserva r
+INNER JOIN mesa m ON r.id_mesa = m.id_mesa
+WHERE m.capacidad = ? AND r.fecha = ? AND r.hora = ? AND r.id_mesa IS NOT NULL
+";
+$stmt3 = $conn->prepare($sql_reservadas);
+$stmt3->bind_param("iss", $capacidad_minima, $fecha, $hora);
+$stmt3->execute();
+$res3 = $stmt3->get_result();
+$mesas_ocupadas = $res3->fetch_assoc()['total'];
+
+// Comparar
+if ($mesas_ocupadas >= $total_mesas) {
+echo "<script>alert('No hay mesas disponibles para $personas personas en esa fecha y hora.'); window.location.href = 'gestionar_reservas.php';</script>";
+exit;
+}
+
 
     if ($id_reserva) {
         // Al editar una reserva, también liberamos la mesa asignada
@@ -112,7 +147,7 @@ $reservas = mysqli_query($conn, "
 </head>
 <body class="container py-5">
     <div style="text-align: right; padding: 15px;">
-    <a href="../administrador.php" style="text-decoration: none; color: #0F172B; font-weight: 600;" onmouseover="this.style.color='#FEA116'" onmouseout="this.style.color='#0F172B'">
+    <a href="../panel" style="text-decoration: none; color: #0F172B; font-weight: 600;" onmouseover="this.style.color='#FEA116'" onmouseout="this.style.color='#0F172B'">
         Página principal
     </a></div>
     <h1 class="mb-4 text-center"><i class="fas fa-utensils"></i> Panel de Gestión de Reservas</h1>
