@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteBase /restaurantProyecto/
+
+# Redirigir /panel a administrador.php (pero mostrará /panel en la URL)
+RewriteRule ^panel$ administrador.php [L]
+
+# Opcional: Redirigir / a administrador.php si el usuario está logueado (pero seguirá mostrando /)
+RewriteCond %{REQUEST_URI} ^/restaurantProyecto/$
+RewriteCond %{QUERY_STRING} !logout
+RewriteCond %{HTTP_COOKIE} PHPSESSID [NC]
+RewriteRule ^$ administrador.php [L]

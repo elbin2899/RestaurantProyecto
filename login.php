@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Redirigir según el rol
             if ($rol === 'admin' || $rol === 'empleado') {
-                header("Location: administrador.php");
+                header("Location: panel");
             } else {
                 header("Location: index.php");
             }            

@@ -79,7 +79,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Obtener reservas
-$reservas = mysqli_query($conn, "SELECT r.*, c.nombre AS cliente, c.email, c.telefono, r.id_mesa, (SELECT numero_mesa FROM mesa WHERE id_mesa = r.id_mesa) AS numero_mesa FROM reserva r JOIN cliente c ON r.id_cliente = c.id_cliente");
+$reservas = mysqli_query($conn, "
+    SELECT 
+        r.*, 
+        c.nombre AS cliente, 
+        c.email, 
+        c.telefono, 
+        r.id_mesa, 
+        (SELECT numero_mesa FROM mesa WHERE id_mesa = r.id_mesa) AS numero_mesa 
+    FROM reserva r 
+    JOIN cliente c ON r.id_cliente = c.id_cliente
+    ORDER BY r.fecha_creacion DESC
+");
 ?>
 
 <!DOCTYPE html>

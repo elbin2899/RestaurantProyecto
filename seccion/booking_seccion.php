@@ -65,7 +65,7 @@
         </div>
     </div>
 </div>
-<section id="reserva">
+</section>
 <!-- Modal de Video -->
 <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

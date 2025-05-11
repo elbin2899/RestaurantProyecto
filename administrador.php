@@ -3,7 +3,7 @@ session_start();
 
 // Validar si el usuario ha iniciado sesión y tiene rol 'admin' o 'emple'
 if (!isset($_SESSION['usuario']) || !in_array($_SESSION['rol'], ['admin', 'empleado'])) {
-    header("Location: index.html");
+    header("Location: index.php");
     exit;
 }
 
@@ -86,7 +86,15 @@ if (!isset($_SESSION['usuario']) || !in_array($_SESSION['rol'], ['admin', 'emple
                 <i class="fas fa-user-shield"></i>
             </div>
             <h2 class="fw-bold">Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario']); ?> 👋</h2>
-            <p class="text-muted mb-4">Has ingresado correctamente al panel del administrador.</p>
+            <p class="text-muted mb-4">
+                <?php
+                echo $_SESSION['rol'] === 'admin' 
+                    ? "Has ingresado correctamente al panel de administrador."
+                    : ($_SESSION['usuario'] === 'head_chef'
+                        ? "Has ingresado correctamente al panel de chef."
+                        : "Has ingresado correctamente al panel de empleado.");
+                ?>
+            </p>
             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
                 <?php if (
                 (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') ||
