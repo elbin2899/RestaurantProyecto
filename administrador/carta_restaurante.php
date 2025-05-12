@@ -10,6 +10,24 @@
 </head>
   
 <body class="bg-light">
+<?php if (isset($_GET['edicion']) && $_GET['edicion'] === 'exitosa'): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>¡Plato actualizado!</strong> Los cambios se guardaron correctamente.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+<?php endif; ?>
+<?php if (isset($_GET['accion']) && $_GET['accion'] === 'exitosa'): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>¡<?= $_GET['tipo'] === 'categoria' ? 'Categoría' : 'Plato' ?> guardado!</strong> La operación se completó correctamente.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+<?php endif; ?>
+<?php if (isset($_GET['eliminado'])): ?>
+    <div class="alert alert-danger alert-dismissible fade show">
+        Plato eliminado correctamente
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+<?php endif; ?>
 
 <div class="container mt-5">
     <div style="text-align: right; padding: 15px;">
@@ -93,10 +111,19 @@
                 </tr>
                 </thead>
                 <tbody>
+                    
                     <?php
                     $query = "SELECT i.*, c.nombre AS categoria 
-                              FROM item_menu i 
-                              LEFT JOIN categoria_menu c ON i.id_categoria = c.id_categoria";
+                            FROM item_menu i 
+                            LEFT JOIN categoria_menu c ON i.id_categoria = c.id_categoria
+                            ORDER BY 
+                                CASE 
+                                WHEN c.nombre = 'Entrante' THEN 1
+                                WHEN c.nombre = 'Plato Principal' THEN 2
+                                WHEN c.nombre = 'Postre' THEN 3
+                                ELSE 4
+                                END,
+                                i.id_item DESC";  /* Orden descendente para mostrar primero los más recientes */
                     $result = mysqli_query($conn, $query);
                     while ($row = mysqli_fetch_assoc($result)) {
                         $estado = $row['activo'] ? "✅ Sí" : "❌ No";
@@ -134,5 +161,7 @@
     </div>
 
 </div>
+<!-- Añadido para los alerts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

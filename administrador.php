@@ -52,7 +52,7 @@ if (!isset($_SESSION['usuario']) || !in_array($_SESSION['rol'], ['admin', 'emple
 
                     <?php if (
                     (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') ||
-                    (isset($_SESSION['rol'], $_SESSION['usuario']) && $_SESSION['rol'] === 'empleado' && $_SESSION['usuario'] === 'head_chef')
+                    (isset($_SESSION['rol'], $_SESSION['usuario']) && $_SESSION['rol'] === 'empleado' && $_SESSION['usuario'] === 'head_chef' || $_SESSION['usuario'] === 'handy_man')
                         ): ?>
                         <li class="nav-item me-2">
                             <a href="administrador/carta_restaurante.php" class="btn btn-outline-light">

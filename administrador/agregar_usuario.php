@@ -6,17 +6,18 @@ $mensaje = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $usuario = $_POST['nombre_usuario'];
     $contrasena = $_POST['contrasena'];
+    $rol = $_POST['rol']; // Nuevo campo para el rol
 
-    if (!empty($usuario) && !empty($contrasena)) {
+    if (!empty($usuario) && !empty($contrasena) && !empty($rol)) {
         $hashed_password = password_hash($contrasena, PASSWORD_DEFAULT);
 
         $sql = "INSERT INTO usuario (nombre_usuario, contrasena, rol)
-                VALUES (?, ?, 'empleado')";
+                VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $usuario, $hashed_password);
+        $stmt->bind_param("sss", $usuario, $hashed_password, $rol);
 
         if ($stmt->execute()) {
-            $mensaje = "<div class='alert alert-success'>✅ Usuario '$usuario' agregado exitosamente.</div>";
+            $mensaje = "<div class='alert alert-success'>✅ Usuario '$usuario' agregado exitosamente como $rol.</div>";
         } else {
             $mensaje = "<div class='alert alert-danger'>❌ Error: " . $stmt->error . "</div>";
         }
@@ -53,7 +54,7 @@ $conn->close();
         <div class="col-12 col-sm-10 col-md-8 col-lg-6 bg-white p-5 rounded shadow-sm">
             <div class="mb-4 text-center">
                 <h2 class="fw-bold text-success">
-                    <i class="fas fa-user-plus me-2"></i>Agregar Usuario (Empleado)
+                    <i class="fas fa-user-plus me-2"></i>Agregar Usuario
                 </h2>
                 <p class="text-muted">Completa el formulario para registrar un nuevo usuario</p>
             </div>
@@ -65,9 +66,17 @@ $conn->close();
                     <label for="nombre_usuario" class="form-label">Nombre de Usuario</label>
                     <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" required>
                 </div>
-                <div class="mb-4">
+                <div class="mb-3">
                     <label for="contrasena" class="form-label">Contraseña</label>
                     <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+                </div>
+                <div class="mb-4">
+                    <label for="rol" class="form-label">Rol del Usuario</label>
+                    <select class="form-select" id="rol" name="rol" required>
+                        <option value="">Selecciona un rol...</option>
+                        <option value="admin">Administrador</option>
+                        <option value="empleado">Empleado</option>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-dark w-100">
                     <i class="fas fa-plus-circle me-2"></i>Crear Usuario

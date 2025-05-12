@@ -53,9 +53,12 @@ if (isset($_POST['actualizar'])) {
             WHERE id_item=$id";
     }
 
-    mysqli_query($conn, $query_update);
-    header("Location: carta_restaurante.php");
-    exit;
+    if (mysqli_query($conn, $query_update)) {
+        header("Location: carta_restaurante.php?edicion=exitosa");
+        exit;
+    } else {
+        $error = mysqli_error($conn);
+    }
 }
 ?>
 
@@ -70,6 +73,13 @@ if (isset($_POST['actualizar'])) {
 <body class="bg-light">
 
 <div class="container mt-5">
+    <?php if (isset($error)): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>¡Error!</strong> <?= $error ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    <?php endif; ?>
+    
     <h2 class="mb-4">Editar Plato</h2>
     <form action="" method="POST" enctype="multipart/form-data" class="bg-white p-4 shadow rounded">
 
@@ -111,7 +121,7 @@ if (isset($_POST['actualizar'])) {
         <a href="carta_restaurante.php" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 
