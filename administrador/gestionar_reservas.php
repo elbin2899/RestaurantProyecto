@@ -236,7 +236,15 @@ $reservas = mysqli_query($conn, "
 
                         <td><?= $r['numero_mesa'] ? $r['numero_mesa'] : '—' ?></td>
                         <td>
-                            <a href="#" onclick="cargarDatosReserva('<?= $r['id_reserva'] ?>', '<?= $r['cliente'] ?>', '<?= $r['email'] ?>', '<?= $r['telefono'] ?>', '<?= $r['fecha'] ?>', '<?= $r['hora'] ?>', '<?= $r['numero_personas'] ?>', '<?= $r['estado'] ?>')" class="btn btn-sm btn-primary">
+                            <a href="#" onclick="cargarDatosReserva(
+                                '<?= $r['id_reserva'] ?>', 
+                                '<?= htmlspecialchars($r['cliente'], ENT_QUOTES) ?>', 
+                                '<?= htmlspecialchars($r['email'], ENT_QUOTES) ?>', 
+                                '<?= htmlspecialchars($r['telefono'], ENT_QUOTES) ?>', 
+                                '<?= $r['fecha'] ?>', 
+                                '<?= substr($r['hora'], 0, 5) ?>',
+                                '<?= $r['numero_personas'] ?>'
+                            )" class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i> Editar
                             </a>
                             <a href="gestionar_reservas.php?eliminar=<?= $r['id_reserva'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar esta reserva?')">

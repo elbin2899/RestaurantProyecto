@@ -7,7 +7,6 @@ function cargarDatosReserva(id, nombre, email, telefono, fecha, hora, personas, 
     document.querySelector('input[name="fecha"]').value = fecha;
     document.querySelector('select[name="hora"]').value = hora;
     document.querySelector('input[name="personas"]').value = personas;
-    document.querySelector('select[name="estado"]').value = estado;
 }
 
 // Configuración inicial cuando el DOM está cargado
