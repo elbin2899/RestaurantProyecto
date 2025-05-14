@@ -98,19 +98,19 @@ exit;
 }
 
 
-    if ($id_reserva) {
+if ($id_reserva) {
         // Al editar una reserva, también liberamos la mesa asignada
         $sql = "UPDATE reserva SET id_cliente=$id_cliente, fecha='$fecha', hora='$hora', numero_personas=$personas, estado='$estado', id_mesa=NULL WHERE id_reserva=$id_reserva";
-    } else {
+} else {
         $sql = "INSERT INTO reserva (id_cliente, fecha, hora, numero_personas, estado) VALUES ($id_cliente, '$fecha', '$hora', $personas, '$estado')";
-    }
-    mysqli_query($conn, $sql);
-    if ($id_reserva) {
+}
+mysqli_query($conn, $sql);
+if ($id_reserva) {
         header('Location: gestionar_reservas.php?edicion=exitosa');
-    } else {
+} else {
         header('Location: gestionar_reservas.php?creacion=exitosa');
-    }
-    exit;
+}
+exit;
 }
 
 // Obtener reservas

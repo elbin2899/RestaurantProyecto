@@ -15,7 +15,7 @@
             <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                 <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservas</h5>
                 <h1 class="text-white mb-4">Reserva tu mesa online</h1>
-                <form action="seccion/guardar_reserva.php" method="POST">
+                <form action="seccion/booking/guardar_reserva.php" method="POST">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="form-floating">
@@ -84,6 +84,33 @@
         </div>
     </div>
 </div>
+
+    <!-- Modal siempre presente -->
+    <div class="modal fade" id="errorReservaModal" tabindex="-1" aria-labelledby="errorReservaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content text-center">
+        <div class="modal-header">
+            <h5 class="modal-title text-danger" id="errorReservaLabel">
+            <i class="fas fa-calendar-times me-2"></i> Reserva no disponible
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+            <div class="error-icon mb-3" style="font-size: 48px; color: #dc3545;">
+            <i class="fas fa-calendar-times"></i>
+            </div>
+            <?php
+            if (isset($_SESSION['reserva_error_modal'])) {
+                echo $_SESSION['reserva_error_modal'];
+            }
+            ?>
+        </div>
+        <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+        </div>
+    </div>
+    </div>
 </section>
 <!-- Modal de Video -->
 <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -104,5 +131,5 @@
     </div>
 </div>
 <!-- Reservation End -->
-<script src="seccion/functionBooking.js"></script>
+<script src="seccion/booking/functionBooking.js"></script>
 </body>

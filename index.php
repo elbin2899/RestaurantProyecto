@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -75,9 +76,22 @@
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/counterup/counterup.min.js"></script>
     
-
      <!-- Template Javascript importante -->
      <script src="js/main.js"></script>
-  
+
+    <!-- Bootstrap JS (necesario para que funcione el modal de reserva) -->
+    <?php if (isset($_SESSION['reserva_error_modal'])): ?>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            var modal = new bootstrap.Modal(document.getElementById('errorReservaModal'));
+            modal.show();
+        });
+    </script>
+    <?php
+    // Solo eliminar la sesión DESPUÉS de que JS la ha usado
+    unset($_SESSION['reserva_error_modal']);
+    endif;
+    ?>
+
 </body>
 </html>

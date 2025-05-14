@@ -3,7 +3,7 @@ session_start();
 
 // Verificar si hay datos de reserva
 if (!isset($_SESSION['reserva_data'])) {
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
     exit();
 }
 
@@ -90,7 +90,7 @@ unset($_SESSION['reserva_data']); // Limpiar la sesión
             
             <p class="mb-4">Hemos enviado un correo de confirmación a tu dirección de email.</p>
             
-            <a href="../index.php" class="btn btn-primary">
+            <a href="../../index.php" class="btn btn-primary">
                 <i class="fas fa-home"></i> Volver al inicio
             </a>
         </div>

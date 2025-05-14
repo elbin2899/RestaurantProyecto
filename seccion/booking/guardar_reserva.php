@@ -1,5 +1,5 @@
 <?php
-include('../db.php');
+include('../../db.php');
 
 // Recoger datos del formulario
 $nombre = $_POST['nombre'];
@@ -14,7 +14,51 @@ $solicitud_especial = !empty($_POST['solicitud_especial']) ? $_POST['solicitud_e
 session_start();
 
 try {
-    // 1. Insertar cliente si no existe
+    // 1. Verificar disponibilidad de mesas
+    // Buscar la mesa más pequeña posible que pueda acomodar a esa cantidad de personas
+    $consulta_capacidad = "
+    SELECT capacidad FROM mesa 
+    WHERE capacidad >= ? 
+    ORDER BY capacidad ASC 
+    LIMIT 1
+    ";
+    $stmt1 = $conn->prepare($consulta_capacidad);
+    $stmt1->bind_param("i", $numero_personas);
+    $stmt1->execute();
+    $res1 = $stmt1->get_result();
+
+    if ($res1->num_rows === 0) {
+        throw new Exception('No hay mesas adecuadas disponibles.');
+    }
+
+    $capacidad_minima = $res1->fetch_assoc()['capacidad'];
+
+    // 1. Total de mesas con esa capacidad
+    $sql_total_mesas = "SELECT COUNT(*) as total FROM mesa WHERE capacidad = ?";
+    $stmt2 = $conn->prepare($sql_total_mesas);
+    $stmt2->bind_param("i", $capacidad_minima);
+    $stmt2->execute();
+    $res2 = $stmt2->get_result();
+    $total_mesas = $res2->fetch_assoc()['total'];
+
+    // 2. Cuántas de esas ya están ocupadas en esa fecha y hora
+    $sql_reservadas = "
+    SELECT COUNT(*) as total FROM reserva r
+    INNER JOIN mesa m ON r.id_mesa = m.id_mesa
+    WHERE m.capacidad = ? AND r.fecha = ? AND r.hora = ? AND r.id_mesa IS NOT NULL
+    ";
+    $stmt3 = $conn->prepare($sql_reservadas);
+    $stmt3->bind_param("iss", $capacidad_minima, $fecha, $hora);
+    $stmt3->execute();
+    $res3 = $stmt3->get_result();
+    $mesas_ocupadas = $res3->fetch_assoc()['total'];
+
+    // Comparar
+    if ($mesas_ocupadas >= $total_mesas) {
+        throw new Exception("No hay mesas disponibles para $numero_personas personas en la fecha y hora solcitada.");
+    }
+
+    // 2. Insertar cliente si no existe
     $sql_cliente = "SELECT id_cliente FROM cliente WHERE email = ?";
     $stmt = $conn->prepare($sql_cliente);
     $stmt->bind_param("s", $email);
@@ -32,7 +76,7 @@ try {
         $id_cliente = $stmt_insert->insert_id;
     }
 
-    // 2. Insertar reserva
+    // 3. Insertar reserva
     $sql_reserva = "INSERT INTO reserva (id_cliente, fecha, hora, numero_personas, solicitud_especial) 
                     VALUES (?, ?, ?, ?, ?)";
     $stmt_reserva = $conn->prepare($sql_reserva);
@@ -56,9 +100,9 @@ try {
     }
 } catch (Exception $e) {
     // Guardar error en sesión
-    $_SESSION['reserva_error'] = "Ocurrió un error al procesar tu reserva. Por favor, inténtalo de nuevo.";
-    header("Location: ../index.php#reserva");
-    exit();
+    $_SESSION['reserva_error_modal'] = 'Lo sentimos, no hay mesas disponibles para la fecha y hora seleccionadas.';
+header("Location: ../../index.php#reserva");
+exit();
 }
 ?>
 <!--session_start():
