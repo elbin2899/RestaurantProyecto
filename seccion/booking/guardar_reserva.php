@@ -85,10 +85,13 @@ try {
     }
 
     // 3. Insertar reserva
-    $sql_reserva = "INSERT INTO reserva (id_cliente, fecha, hora, numero_personas, solicitud_especial) 
-                    VALUES (?, ?, ?, ?, ?)";
+     $sql_reserva = "INSERT INTO reserva (id_cliente, fecha, hora, numero_personas, solicitud_especial, estado, token_cancelacion) 
+                        VALUES (?, ?, ?, ?, ?, 'confirmada', ?)";
     $stmt_reserva = $conn->prepare($sql_reserva);
-    $stmt_reserva->bind_param("issis", $id_cliente, $fecha, $hora, $numero_personas, $solicitud_especial);
+
+    // Generar token único para cancelación
+    $token_cancelacion = bin2hex(random_bytes(32));
+    $stmt_reserva->bind_param("ississ", $id_cliente, $fecha, $hora, $numero_personas, $solicitud_especial, $token_cancelacion);
     
     if ($stmt_reserva->execute()) {
         // Guardar datos en sesión para la página de confirmación
@@ -129,24 +132,112 @@ try {
             
             // Cuerpo del email en HTML
             $mail->isHTML(true);
-            $mail->Body = "
-                <h2>¡Reserva Confirmada en Cuisine X!</h2>
-                <p>Gracias por reservar con nosotros, $nombre.</p>
-                <h3>Detalles de tu reserva:</h3>
-                <p><strong>Fecha:</strong> $fecha</p>
-                <p><strong>Hora:</strong> $hora</p>
-                <p><strong>Número de personas:</strong> $numero_personas</p>
-            ";
+           $mail->Body = '
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Reserva</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #1a5276;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 25px;
+        }
+        h2.email-title {
+            color: #ffffff !important;
+            font-size: 24px;
+            margin: 0;
+            padding: 0;
+            font-weight: bold;
+        }
+        h3 {
+            color: #1a5276;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .reservation-details {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .cancel-link {
+            display: inline-block;
+            margin: 15px 0;
+            padding: 10px 15px;
+            background-color: #dc3545;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #f1f1f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h2>¡Reserva Confirmada en Cuisine X!</h2>
+        </div>
+        
+        <div class="content">
+            <p>Gracias por reservar con nosotros, '.$nombre.'.</p>
             
-            if (!empty($solicitud_especial)) {
-                $mail->Body .= "<p><strong>Solicitud especial:</strong> $solicitud_especial</p>";
-            }
+            <h3>Detalles de tu reserva:</h3>
             
-            $mail->Body .= "
-                <p>Si necesitas modificar o cancelar tu reserva, por favor contáctanos.</p>
-                <p>¡Esperamos verte pronto!</p>
-                <p>El equipo de Restaurante Delicias</p>
-            ";
+            <div class="reservation-details">
+                <p><strong>Fecha:</strong> '.$fecha.'</p>
+                <p><strong>Hora:</strong> '.$hora.'</p>
+                <p><strong>Número de personas:</strong> '.$numero_personas.'</p>
+                '.(!empty($solicitud_especial) ? "<p><strong>Solicitud especial:</strong> ".$solicitud_especial."</p>" : "").'
+            </div>
+            
+            <p>Si necesitas modificar o cancelar tu reserva, por favor usa este enlace:</p>
+            
+            <a href="http://localhost/restaurantProyecto/seccion/booking/cancelar_reserva.php?token='.$token_cancelacion.'" 
+               class="cancel-link">
+               Cancelar esta reserva
+            </a>
+            
+            <p>¡Esperamos verte pronto!</p>
+        </div>
+        
+        <div class="footer">
+            <p>El equipo de Cuisine X</p>
+            <p>Teléfono: +34 639 877 214</p>
+            <p>Este es un mensaje automático, por favor no respondas a este correo.</p>
+        </div>
+    </div>
+</body>
+</html>';
 
              // Versión alternativa sin HTML
             $mail->AltBody = "Confirmación de reserva\n\n" .
@@ -161,7 +252,7 @@ try {
 
             // Enviar copia al RESTAURANTE-NO OPERATIVO AÚN
             $mail->clearAddresses();
-            $mail->addAddress('reservas@turestaurante.com', 'Administración');
+            $mail->addAddress('', 'Administración');
             $mail->Subject = "Nueva reserva - $nombre";
             $mail->Body = "
                 <h3>Nueva reserva recibida</h3>
