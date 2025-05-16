@@ -149,7 +149,11 @@ $reservas = mysqli_query($conn, "
     <div style="text-align: right; padding: 15px;">
     <a href="../panel" style="text-decoration: none; color: #0F172B; font-weight: 600;" onmouseover="this.style.color='#FEA116'" onmouseout="this.style.color='#0F172B'">
         Página principal
-    </a></div>
+    </a>
+    <button onclick="window.location.reload();" class="btn btn-sm btn-link ms-2" title="Actualizar datos">
+        <i class="fas fa-sync-alt"></i>
+    </button>
+    </div>
     <h1 class="mb-4 text-center"><i class="fas fa-utensils"></i> Panel de Gestión de Reservas</h1>
     
     <?php if (isset($_GET['asignacion']) && $_GET['asignacion'] === 'exitosa') : ?>

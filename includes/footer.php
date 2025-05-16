@@ -4,9 +4,9 @@
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Empresa</h4>
-                        <a class="btn btn-link" href="">Sobre Nosotros</a>
-                        <a class="btn btn-link" href="">Contacto</a>
-                        <a class="btn btn-link" href="">Reserva</a>
+                        <a class="btn btn-link" href="#about">Sobre Nosotros</a>
+                        <a class="btn btn-link" href="contact.php">Contacto</a>
+                        <a class="btn btn-link" href="#reserva">Reserva</a>
                         <a class="btn btn-link" href="">Política de Privacidad</a>
                         <a class="btn btn-link" href="">Términos y Condiciones</a>
                     </div>
@@ -14,7 +14,7 @@
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contacto</h4>
                         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Calle, San Bernardo, España</p>
                         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+34 639 877 214</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@cuisine_x.com</p>
                         <div class="d-flex pt-2">
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
@@ -25,10 +25,10 @@
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Horarios de
                             Apertura</h4>
-                        <h5 class="text-light fw-normal">Lunes a Sábado</h5>
-                        <p>09:00 - 21:00</p>
-                        <h5 class="text-light fw-normal">Domingo</h5>
-                        <p>10:00 - 17:30</p>
+                        <h5 class="text-light fw-normal">Horario Comida</h5>
+                        <p>12:00 - 16:30</p>
+                        <h5 class="text-light fw-normal">Horario Cena</h5>
+                        <p>19:00 - 23:30</p>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Boletín de

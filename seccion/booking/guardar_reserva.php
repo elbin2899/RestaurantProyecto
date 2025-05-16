@@ -1,6 +1,9 @@
 <?php
 include('../../db.php');
 
+// Iniciar sesión para almacenar datos temporalmente
+session_start();
+
 // Incluir PHPMailer
 require '../../PHPMailer/Exception.php';
 require '../../PHPMailer/PHPMailer.php';
@@ -17,9 +20,6 @@ $fecha = trim($_POST['fecha']);
 $hora = trim($_POST['hora']);
 $numero_personas = (int)$_POST['numero_personas'];
 $solicitud_especial = !empty($_POST['solicitud_especial']) ? trim($_POST['solicitud_especial']) : NULL;
-
-// Iniciar sesión para almacenar datos temporalmente
-session_start();
 
 try {
     // 1. Verificar disponibilidad de mesas
@@ -266,16 +266,18 @@ try {
             
             $mail->send();
 
-        // Redirigir a página de confirmación
-            header("Location: confirmacion_reserva.php");
-            exit();
-            
-        } catch (Exception $e) {
-            // Guardar error en sesión
-            $_SESSION['reserva_error_modal'] = 'Reserva completada pero hubo un error al enviar el correo de confirmación.';
-            header("Location: ../../index.php#reserva");
-            exit();
-        }
+       // Redirigir a página de confirmación aunque el correo falle
+    header("Location: confirmacion_reserva.php");
+    exit();
+
+} catch (Exception $e) {
+    // Registrar el error de correo si quieres
+    error_log("Error al enviar correo: " . $mail->ErrorInfo);
+
+    // Igual redirigir a confirmación (aunque sin correo enviado)
+    header("Location: confirmacion_reserva.php?correo=fallo");
+    exit();
+}
     } else {
         throw new Exception("Error al insertar reserva");
     }

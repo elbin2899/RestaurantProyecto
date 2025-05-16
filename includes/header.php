@@ -15,9 +15,9 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0 pe-4">
                 <a href="index.php" class="nav-item nav-link <?php if($currentPage == 'index.php') echo 'active'; ?>">Inicio</a>
-                <a href="about.php" class="nav-item nav-link <?php if($currentPage == 'about.php') echo 'active'; ?>">Sobre Nosotros</a>
-                <a href="service.php" class="nav-item nav-link <?php if($currentPage == 'service.php') echo 'active'; ?>">Servicios</a>
-                <a href="menu.php" class="nav-item nav-link <?php if($currentPage == 'menu.php') echo 'active'; ?>">Menú</a>
+                <a href="index.php#about" class="nav-item nav-link <?php if($currentPage == 'about.php') echo 'active'; ?>">Sobre Nosotros</a>
+                <a href="index.php#service" class="nav-item nav-link <?php if($currentPage == 'service.php') echo 'active'; ?>">Servicios</a>
+                <a href="index.php#menu" class="nav-item nav-link <?php if($currentPage == 'menu.php') echo 'active'; ?>">Menú</a>
 
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Páginas</a>
@@ -25,13 +25,13 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#loginModal">
                     <i class="fas fa-sign-in-alt"></i>
                     </a>
-                    <a href="team.php" class="dropdown-item">Nuestro Equipo</a>
-                    <a href="testimonial.php" class="dropdown-item">Testimonios</a>
+                    <a href="index.php#team" class="dropdown-item">Nuestro Equipo</a>
+                    <a href="testimonial.php#testimonial" class="dropdown-item">Testimonios</a>
                 </div>
             </div>
-                <a href="contact.php" class="nav-item nav-link <?php if($currentPage == 'contact.php') echo 'active'; ?>">Contacto</a>
+                <a href="contact.php#contact" class="nav-item nav-link <?php if($currentPage == 'contact.php') echo 'active'; ?>">Contacto</a>
             </div>
-            <a href="booking.php" class="btn btn-primary py-2 px-4">Reservar</a>
+            <a href="index.php#reserva" class="btn btn-primary py-2 px-4">Reservar</a>
         </div>
     </nav>
 </div>
@@ -46,7 +46,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 <p class="text-white animated slideInLeft mb-4 pb-2">Ven y experimenta una explosión de sabores en cada plato. Ofrecemos comida elaborada con
                     ingredientes frescos, pensada para satisfacer todos los gustos. ¡Déjate sorprender por nuestra
                     cocina!</p>
-                <a href="#reserva" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Reservar</a>
+                <a href="index.php#reserva" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Reservar</a>
             </div>
             <div class="col-lg-6 text-center text-lg-end overflow-hidden">
                 <img class="img-fluid" src="img/parrillaVariad_8.png" alt="parrillada">
