@@ -10,3 +10,6 @@ RewriteCond %{REQUEST_URI} ^/restaurantProyecto/$
 RewriteCond %{QUERY_STRING} !logout
 RewriteCond %{HTTP_COOKIE} PHPSESSID [NC]
 RewriteRule ^$ administrador.php [L]
+
+# Página de error 404 personalizada
+ErrorDocument 404 /restaurantProyecto/404.php
