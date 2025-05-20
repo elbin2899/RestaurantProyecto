@@ -52,7 +52,7 @@
                         <div class="row g-4">
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/PanAjoGratinado.png" alt="" style="width: 80px;">
+                                <img class="flex-shrink-0 img-fluid rounded" src="img/PanAjoGratinado.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Pan de ajo gratinado</span>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/BruschettaTomateBurrata.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/BruschettaTomateBurrata.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Bruschetta de tomate cherry, albahaca y burrata fresca</span>
@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/AlitasPicantesBB.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/AlitasPicantesBB.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Alitas BBQ</span>
@@ -88,7 +88,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/ProvoloneFundidoCebolla.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/ProvoloneFundidoCebolla.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Provolone fundido </span>
@@ -100,7 +100,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/EnsaladaCesar.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/EnsaladaCesar.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Ensalada César</span>
@@ -112,7 +112,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/MozzarellaQueso.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/MozzarellaQueso.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Bastones de queso mozzarella</span>
@@ -128,7 +128,7 @@
                         <div class="row g-4">
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/SpaghettiCarbonaraAut.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/SpaghettiCarbonaraAut.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Spaghetti carbonara auténtico</span>
@@ -140,7 +140,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/FettuccinealPesto.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/FettuccinealPesto.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Fettuccine al pesto de albahaca con piñones tostados</span>
@@ -152,7 +152,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/RaviolisSalsaNueces.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/RaviolisSalsaNueces.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Raviolis ricotta y espinacas</span>
@@ -164,7 +164,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/EntrecotconPapasRústicas.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/EntrecotconPapasRústicas.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Entrecot 300g madurado 30 días</span>
@@ -176,7 +176,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/EntrecotconMantequilla.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/EntrecotconMantequilla.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Entrecot trinchado</span>
@@ -188,7 +188,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/HamburguesaClásicaAmericana.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/HamburguesaClásicaAmericana.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Hamburguesa “Clásica Americana”</span>
@@ -200,7 +200,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/HamburguesaItalianJob.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/HamburguesaItalianJob.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Hamburguesa “Italian Job”</span>
@@ -212,7 +212,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/PastaBoloñesaHorneada.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/PastaBoloñesaHorneada.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Pasta al horno boloñesa</span>
@@ -228,7 +228,7 @@
                         <div class="row g-4">
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/Tiramisu.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/Tiramisu.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Tiramisú</span>
@@ -240,7 +240,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/CheesecakeDulcedeLeche.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/CheesecakeDulcedeLeche.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Cheesecake de dulce de leche</span>
@@ -252,7 +252,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/BrownieHelado.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/BrownieHelado.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Brownie de chocolate</span>
@@ -264,7 +264,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/PannaCotta.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/PannaCotta.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Panna cotta de vainilla</span>
@@ -276,7 +276,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/CoulantdeChocolate.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/CoulantdeChocolate.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Coulant de chocolate</span>
@@ -288,7 +288,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded img-hover-zoom" src="img/TartadQuesoFrutal.png" alt="" style="width: 80px;">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="img/TartadQuesoFrutal.png" alt="" style="width: 80px;">
                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                             <span>Tarta de queso al horno con mermelada</span>

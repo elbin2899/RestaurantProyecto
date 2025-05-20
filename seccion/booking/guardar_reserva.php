@@ -250,21 +250,7 @@ try {
             
             $mail->send();
 
-            // Enviar copia al RESTAURANTE-NO OPERATIVO AÚN
-            $mail->clearAddresses();
-            $mail->addAddress('', 'Administración');
-            $mail->Subject = "Nueva reserva - $nombre";
-            $mail->Body = "
-                <h3>Nueva reserva recibida</h3>
-                <p><strong>Cliente:</strong> $nombre</p>
-                <p><strong>Email:</strong> $email</p>
-                <p><strong>Teléfono:</strong> " . ($telefono ? $telefono : 'No proporcionado') . "</p>
-                <p><strong>Fecha:</strong> $fecha</p>
-                <p><strong>Hora:</strong> $hora</p>
-                <p><strong>Personas:</strong> $numero_personas</p>
-                " . ($solicitud_especial ? "<p><strong>Solicitud especial:</strong> $solicitud_especial</p>" : "");
-            
-            $mail->send();
+        
 
        // Redirigir a página de confirmación aunque el correo falle
     header("Location: confirmacion_reserva.php");
