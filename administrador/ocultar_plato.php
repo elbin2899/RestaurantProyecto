@@ -13,5 +13,11 @@ $nuevo_estado = $row['activo'] ? 0 : 1;
 $update = "UPDATE item_menu SET activo = $nuevo_estado WHERE id_item = $id";
 mysqli_query($conn, $update);
 
-header("Location: carta_restaurante.php");
+// Redirigir con mensaje correspondiente
+if ($nuevo_estado == 0) {
+    header("Location: carta_restaurante.php?visibilidad=ocultado");
+} else {
+    header("Location: carta_restaurante.php?visibilidad=activado");
+}
+exit();
 ?>

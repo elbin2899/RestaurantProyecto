@@ -55,6 +55,7 @@
         <?php include('includes/footer.php'); ?>
 
     </div>
+    
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             const usuario = document.getElementById('usuario').value.trim();

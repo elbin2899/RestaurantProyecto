@@ -60,3 +60,52 @@
 
 
 })(jQuery);
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Mapea los enlaces con sus secciones
+    const sections = ['about', 'service', 'menu'];
+    const navLinks = {
+        'about': document.getElementById('about-link'),
+        'service': document.getElementById('service-link'),
+        'menu': document.getElementById('menu-link'),
+        'inicio': document.getElementById('inicio-link')
+    };
+
+    function removeActive() {
+        Object.values(navLinks).forEach(link => link.classList.remove('active'));
+    }
+
+    function setActiveSection() {
+        let scrollPos = window.scrollY || window.pageYOffset;
+        let found = false;
+        sections.forEach(sectionId => {
+            let section = document.getElementById(sectionId);
+            if (section) {
+                let top = section.offsetTop - 80; // Ajusta según tu navbar
+                let bottom = top + section.offsetHeight;
+                if (scrollPos >= top && scrollPos < bottom) {
+                    removeActive();
+                    navLinks[sectionId].classList.add('active');
+                    found = true;
+                }
+            }
+        });
+        // Si no está en ninguna sección, activa "Inicio"
+        if (!found) {
+            removeActive();
+            navLinks['inicio'].classList.add('active');
+        }
+    }
+
+    window.addEventListener('scroll', setActiveSection);
+    setActiveSection();
+
+    // Opcional: al hacer clic, activa manualmente el enlace
+    Object.entries(navLinks).forEach(([key, link]) => {
+        link.addEventListener('click', function() {
+            removeActive();
+            link.classList.add('active');
+        });
+    });
+});

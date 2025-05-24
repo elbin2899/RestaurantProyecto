@@ -28,6 +28,19 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
 <?php endif; ?>
+<?php if (isset($_GET['visibilidad'])): ?>
+    <?php if ($_GET['visibilidad'] === 'ocultado'): ?>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>¡Plato ocultado!</strong> El plato ya no está visible en la carta.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    <?php elseif ($_GET['visibilidad'] === 'activado'): ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>¡Plato activado!</strong> El plato vuelve a estar visible en la carta.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>
 
 <div class="container mt-5">
     <div style="text-align: right; padding: 15px;">
