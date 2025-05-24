@@ -18,61 +18,86 @@ unset($_SESSION['reserva_data']); // Limpiar la sesión
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmación de Reserva</title>
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        .confirmation-container {
-            max-width: 700px; /* Aumentado para acomodar texto más grande */
-            margin: 50px auto;
-            padding: 40px; /* Más padding */
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        .confirmation-icon {
-            font-size: 6rem; /* Aumentado de 5rem */
-            color: rgb(5, 54, 109);
-            margin-bottom: 30px; /* Más espacio */
-        }
-        
-        /* Tipografía aumentada */
-        h2 {
-            font-size: 2.5rem; /* Aumentado considerablemente */
-            margin-bottom: 30px !important;
-        }
-        
-        .card-title {
-            font-size: 1.8rem; /* Aumentado */
-            margin-bottom: 25px;
-        }
-        
-        .card-body p {
-            font-size: 1.3rem; /* Texto más grande */
-            margin-bottom: 15px;
-        }
-        
-        .card-body strong {
-            font-size: 1.3rem; /* Texto en negrita más grande */
-        }
-        
-        .mb-4 {
-            font-size: 1.4rem; /* Texto del correo más grande */
-        }
-        
-        .btn {
-            font-size: 1.3rem; /* Botón más grande */
-            padding: 12px 30px;
-        }
-        
-        .btn i {
-            font-size: 1.3rem; /* Icono del botón más grande */
-        }
+       body {
+                margin: 0;
+                padding: 0;
+                background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)), url('../../img/bg-hero.jpg');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                font-family: 'Quicksand', sans-serif;
+                color: #fff;
+                text-align: center;
+                padding: 30px 10px;
+                min-height: 100vh;
+            }
+
+            h2 {
+                color: #fff;
+                font-size: 1.8rem;
+                margin-bottom: 25px;
+            }
+
+            .card {
+                background-color: #ffffff;
+                color: #333;
+                padding: 20px;
+                border-radius: 10px;
+                max-width: 500px;
+                margin: 0 auto 30px auto;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+                font-size: 0.95rem;
+            }
+
+            .card-title {
+                font-weight: 600;
+                font-size: 1.1rem;
+                color: #0F172B;
+            }
+
+            .card p {
+                margin-bottom: 10px;
+                color: #2c3e50;
+            }
+
+            footer p {
+                color: #fff;
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+
+            .btn-home {
+                background-color: #fea116;
+                color: white;
+                padding: 10px 20px;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: 600;
+                transition: background-color 0.3s ease;
+                display: inline-block;
+                margin-top: 10px;
+            }
+
+            .btn-home:hover {
+                background-color: #e6950b;
+            }
+            .icono-check-container {
+                font-size: 60px;
+                color:rgb(105, 167, 233); 
+                margin-bottom: 15px;
+            }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="confirmation-container text-center">
-            <div class="confirmation-icon">
-                <i class="fas fa-check-circle"></i>
+            <div class="icono-check-container">
+                <i class="fa-solid fa-circle-check"></i>
             </div>
+
             <h2 class="mb-4">¡Reserva Confirmada!</h2>
             
             <div class="card mb-4">

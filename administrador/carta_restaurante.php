@@ -1,4 +1,92 @@
-<?php include('../db.php'); ?>
+<?php 
+session_start();
+include('../db.php'); 
+// Verifica si hay sesión iniciada
+if (!isset($_SESSION['rol']) || !isset($_SESSION['usuario'])) {
+    acceso_denegado();
+    exit();
+}
+
+// Verifica si el rol es válido
+if ($_SESSION['rol'] !== 'admin' && 
+    !($_SESSION['rol'] === 'empleado' && $_SESSION['usuario'] === 'head_chef')) {
+    acceso_denegado();
+    exit();
+}
+
+function acceso_denegado() {
+    echo '<!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Acceso Denegado</title>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+        <script>
+            setTimeout(function() {
+                window.history.back();
+            }, 5000);
+        </script>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9)), url("../img/bg-hero.jpg");
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                font-family: "Quicksand", sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                color: #fff;
+            }
+            .container {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(6px);
+                padding: 40px;
+                border-radius: 10px;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+                text-align: center;
+                max-width: 400px;
+            }
+            .container h1 {
+                color: #ffc107;
+                margin-bottom: 20px;
+            }
+            .btn {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #fea116;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: 600;
+                transition: background-color 0.3s ease;
+                margin-top: 20px;
+            }
+            .btn:hover {
+                background-color: #e6950b;
+            }
+            .info {
+                margin-top: 15px;
+                font-size: 0.9em;
+                color: #eee;
+            }
+        </style>
+    </head>
+    <body>
+          <div class="container">
+            <h1>Acceso Denegado</h1>
+            <p>No tienes el permiso para ver esta página.</p>
+            <a class="btn" href="javascript:history.back()">Volver atrás</a>
+            <p class="info">Serás redirigido automáticamente a la página anterior en 5 segundos.</p>
+        </div>
+    </body>
+    </html>';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
