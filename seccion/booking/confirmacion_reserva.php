@@ -1,104 +1,68 @@
 <?php
 session_start();
 
-// Verificar si hay datos de reserva
 if (!isset($_SESSION['reserva_data'])) {
     header("Location: ../../index.php");
     exit();
 }
 
-// Obtener datos de la reserva
 $reserva = $_SESSION['reserva_data'];
-unset($_SESSION['reserva_data']); // Limpiar la sesión
+unset($_SESSION['reserva_data']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmación de Reserva</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Confirmación de reserva</title>
+
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap"
+        rel="stylesheet">
+
+    <!-- Iconos y librerías -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <style>
-        .confirmation-container {
-            max-width: 700px; /* Aumentado para acomodar texto más grande */
-            margin: 50px auto;
-            padding: 40px; /* Más padding */
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        .confirmation-icon {
-            font-size: 6rem; /* Aumentado de 5rem */
-            color: rgb(5, 54, 109);
-            margin-bottom: 30px; /* Más espacio */
-        }
-        
-        /* Tipografía aumentada */
-        h2 {
-            font-size: 2.5rem; /* Aumentado considerablemente */
-            margin-bottom: 30px !important;
-        }
-        
-        .card-title {
-            font-size: 1.8rem; /* Aumentado */
-            margin-bottom: 25px;
-        }
-        
-        .card-body p {
-            font-size: 1.3rem; /* Texto más grande */
-            margin-bottom: 15px;
-        }
-        
-        .card-body strong {
-            font-size: 1.3rem; /* Texto en negrita más grande */
-        }
-        
-        .mb-4 {
-            font-size: 1.4rem; /* Texto del correo más grande */
-        }
-        
-        .btn {
-            font-size: 1.3rem; /* Botón más grande */
-            padding: 12px 30px;
-        }
-        
-        .btn i {
-            font-size: 1.3rem; /* Icono del botón más grande */
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Estilos -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="confirmacion.css">
 </head>
+
 <body>
-    <div class="container">
-        <div class="confirmation-container text-center">
-            <div class="confirmation-icon">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <h2 class="mb-4">¡Reserva Confirmada!</h2>
-            
-            <div class="card mb-4">
-                <div class="card-body text-start">
-                    <h5 class="card-title">Detalles de tu reserva</h5>
-                    <p><strong>Nombre:</strong> <?= htmlspecialchars($reserva['nombre']) ?></p>
-                    <p><strong>Fecha:</strong> <?= htmlspecialchars($reserva['fecha']) ?></p>
-                    <p><strong>Hora:</strong> <?= htmlspecialchars($reserva['hora']) ?></p>
-                    <p><strong>Número de personas:</strong> <?= htmlspecialchars($reserva['numero_personas']) ?></p>
-                    <?php if (!empty($reserva['solicitud_especial'])): ?>
-                        <p><strong>Solicitud especial:</strong> <?= htmlspecialchars($reserva['solicitud_especial']) ?></p>
-                    <?php endif; ?>
-                </div>
-            </div>
-            
-            <p class="mb-4">Hemos enviado un correo de confirmación a tu dirección de email.</p>
-            
-            <a href="../../index.php" class="btn btn-primary">
-                <i class="fas fa-home"></i> Volver al inicio
-            </a>
+    <div class=" container-xxl py-5 bg-dark hero-header mb-5 confirmation-wrapper">
+        <div class="confirmation-icon">
+            <i class="fas fa-check-circle"></i>
         </div>
+        <h1 class="confirmation-title">¡Reserva Confirmada!</h1>
+
+        <div class="confirmation-box text-start">
+            <h5 style="margin-top: 1%;">Detalles de tu reserva</h5>
+            <p><strong>Nombre:</strong> <?= htmlspecialchars($reserva['nombre']) ?></p>
+            <p><strong>Fecha:</strong> <?= htmlspecialchars($reserva['fecha']) ?></p>
+            <p><strong>Hora:</strong> <?= htmlspecialchars($reserva['hora']) ?></p>
+            <p><strong>Número de personas:</strong> <?= htmlspecialchars($reserva['numero_personas']) ?></p>
+            <?php if (!empty($reserva['solicitud_especial'])): ?>
+            <p><strong>Solicitud especial:</strong> <?= htmlspecialchars($reserva['solicitud_especial']) ?></p>
+            <?php endif; ?>
+        </div>
+
+        <p class="confirmation-message">Hemos enviado un correo de confirmación a tu dirección de email.</p>
+
+        <a href="../../index.php" class="btn-home">
+            <i class="fas fa-home me-2"></i>Volver al inicio
+        </a>
+
     </div>
 
-    <!-- JavaScript Libraries -->
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/js/all.min.js"></script>
 </body>
+
 </html>
