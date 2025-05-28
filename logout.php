@@ -14,7 +14,7 @@ session_destroy();   // Destruye la sesión
        body {
                 margin: 0;
                 padding: 0;
-                background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)), url('../../img/bg-hero.jpg');
+                background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)), url('/img/bg-hero.jpg');
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;

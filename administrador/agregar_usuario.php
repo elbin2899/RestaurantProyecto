@@ -116,11 +116,12 @@ $conn->close();
     <meta charset="UTF-8">
     <title>Agregar Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/0b3f2bf674.js" crossorigin="anonymous"></script>
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
     <!-- NAVBAR simple -->
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-dark py-3">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold" href="../panel">
                 <i class="fas fa-arrow-left me-2"></i>Volver al Panel

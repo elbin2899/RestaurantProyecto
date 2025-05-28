@@ -68,6 +68,13 @@ if (!isset($_SESSION['usuario']) || !in_array($_SESSION['rol'], ['admin', 'emple
                             </a>
                         </li>
                     <?php endif; ?>
+                    <?php if (isset($_SESSION['rol']) && in_array($_SESSION['rol'], ['admin', 'empleado'])): ?>
+                        <li class="nav-item me-2">
+                            <a href="testimonio/admin_testimonios.php" class="btn btn-outline-light">
+                                <i class="fas fa-comment-alt me-1"></i>Testimonios
+                            </a>
+                        </li>
+                    <?php endif; ?>
 
                     <li class="nav-item">
                         <a href="logout.php" class="btn btn-danger">
