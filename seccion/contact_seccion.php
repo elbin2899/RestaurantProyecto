@@ -6,6 +6,31 @@
             <h5 class="section-title ff-secondary text-center text-primary fw-normal">Contáctanos</h5>
             <h1 class="mb-5">Consulta cualquier duda</h1>
         </div>
+        
+       <?php if (isset($_GET['success'])): ?>
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+               <div class="toast-header bg-primary text-white">
+                    <strong class="me-auto"><i class="fas fa-check-circle me-2"></i>Confirmación</strong>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body bg-light">
+                    <p>Tu mensaje ha sido enviado correctamente. Te contactaremos pronto.</p>
+                    <div class="progress mt-2" style="height: 3px;">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        // Cierra automáticamente después de 5 segundos
+        setTimeout(() => {
+            $('.toast').toast('hide');
+        }, 5000);
+        </script>
+        <?php endif; ?>
+        
         <div class="row g-4">
             <div class="col-12">
                 <div class="row gy-4">
@@ -24,36 +49,33 @@
                 </div>
             </div>
             <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
-                <iframe class="position-relative rounded w-100 h-100"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-                    frameborder="0" style="min-height: 350px; border:0;" allowfullscreen="" aria-hidden="false"
-                    tabindex="0"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.1803985567317!2d-3.707972524042738!3d40.427004155014046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422862367391f5%3A0xac51c6a5beeda8b1!2sC.%20de%20San%20Bernardo%2C%2070%2C%20Centro%2C%2028015%20Madrid!5e0!3m2!1ses!2ses!4v1748459048454!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="col-md-6">
                 <div class="wow fadeInUp" data-wow-delay="0.2s">
-                    <form>
+                    <form method="POST" action="seccion/enviar_contacto.php">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Tu nombre">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Tu nombre" required>
                                     <label for="name">Tu nombre</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Tu correo electrónico">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Tu correo electrónico" required>
                                     <label for="email">Tu correo electrónico</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Asunto">
+                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Asunto" required>
                                     <label for="subject">Asunto</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Escribe tu mensaje aquí" id="message" style="height: 150px"></textarea>
+                                    <textarea class="form-control" placeholder="Escribe tu mensaje aquí" id="message" name="message" style="height: 150px" required></textarea>
                                     <label for="message">Mensaje</label>
                                 </div>
                             </div>
