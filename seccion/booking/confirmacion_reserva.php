@@ -89,6 +89,19 @@ unset($_SESSION['reserva_data']); // Limpiar la sesión
                 color:rgb(105, 167, 233); 
                 margin-bottom: 15px;
             }
+            .confirmation-title {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: #FFA500;
+                margin-bottom: 20px;
+                font-family: 'Nunito', sans-serif;
+            }
+            .confirmation-message {
+                color: #ddd;
+                font-size: 1.1rem;
+                margin-top: 25px;
+                font-style: italic;
+            }
     </style>
 </head>
 <body>
@@ -98,7 +111,7 @@ unset($_SESSION['reserva_data']); // Limpiar la sesión
                 <i class="fa-solid fa-circle-check"></i>
             </div>
 
-            <h2 class="mb-4">¡Reserva Confirmada!</h2>
+            <h1 class="confirmation-title">¡Reserva Confirmada!</h1>
             
             <div class="card mb-4">
                 <div class="card-body text-start">
@@ -113,7 +126,7 @@ unset($_SESSION['reserva_data']); // Limpiar la sesión
                 </div>
             </div>
             
-            <p class="mb-4">Hemos enviado un correo de confirmación a tu dirección de email.</p>
+            <p class="confirmation-message">Hemos enviado un correo de confirmación a tu dirección de email.</p>
             
             <a href="../../index.php" class="btn btn-primary">
                 <i class="fas fa-home"></i> Volver al inicio
