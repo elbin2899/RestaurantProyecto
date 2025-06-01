@@ -54,5 +54,6 @@
                 </div>
             </div>
         </div>
-        <!-- Service End -->
+    </div>
+    <!-- Service End -->
 </section>
