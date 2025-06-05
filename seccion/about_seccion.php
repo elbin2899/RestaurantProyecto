@@ -44,6 +44,7 @@
                         </div>
                     </div>
                 </div>
+                 <a href="index.php#team" class="btn btn-primary py-3 px-5 mt-2">Nuestro Equipo</a>
             </div>
         </div>
     </div>

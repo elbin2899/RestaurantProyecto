@@ -15,11 +15,12 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0 pe-4">
                 <a href="index.php" class="nav-item nav-link <?php if($currentPage == 'index.php') echo 'active'; ?>">Inicio</a>
-                <a href="index.php#about" class="nav-item nav-link <?php if($currentPage == 'about.php') echo 'active'; ?>">Sobre Nosotros</a>
-                <a href="index.php#service" class="nav-item nav-link <?php if($currentPage == 'service.php') echo 'active'; ?>">Servicios</a>
-                <a href="index.php#menu" class="nav-item nav-link <?php if($currentPage == 'menu.php') echo 'active'; ?>">Menú</a>
-
-            <div class="nav-item dropdown">
+                <a href="index.php#about" class="nav-item nav-link">Sobre Nosotros</a>
+                <a href="index.php#service" class="nav-item nav-link">Servicios</a>
+                <a href="index.php#menu" class="nav-item nav-link">Menú</a>
+                <a href="testimonial.php#testimonial" class="nav-item nav-link <?php if($currentPage == 'testimonial.php') echo 'active'; ?>">Reseñas</a>
+             
+            <!--<div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Páginas</a>
                 <div class="dropdown-menu m-0">
                     <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#loginModal">
@@ -28,8 +29,11 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     <a href="index.php#team" class="dropdown-item">Nuestro Equipo</a>
                     <a href="testimonial.php#testimonial" class="dropdown-item">Testimonios</a>
                 </div>
-            </div>
+            </div>-->
                 <a href="contact.php#contact" class="nav-item nav-link <?php if($currentPage == 'contact.php') echo 'active'; ?>">Contacto</a>
+                <a href="#" class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="fas fa-sign-in-alt"></i>
+                </a>
             </div>
             <a href="index.php#reserva" class="btn btn-primary py-2 px-4">Reservar</a>
         </div>

@@ -52,7 +52,7 @@
                     echo '<div id="tab-'.$id_categoria.'" class="tab-pane fade show p-0 '.$active.'">';
                     echo '<div class="row g-4">';
                     
-                    // Consulta SQL con prepared statements (seguridad mejorada)
+                    // Consulta SQL 
                     $query = "SELECT * FROM item_menu WHERE id_categoria = ? AND activo = 1";
                     $stmt = mysqli_prepare($conn, $query);
                     mysqli_stmt_bind_param($stmt, "i", $id_categoria);
