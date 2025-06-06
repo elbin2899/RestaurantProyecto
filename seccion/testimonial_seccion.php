@@ -2,16 +2,16 @@
 include('db.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = $_POST['nombre'];
+    $email = $_POST['email'];
     $fecha_reserva = $_POST['fecha_reserva'];
     $comentario = $_POST['comentario'];
 
-    // Validar que la reserva exista con ese nombre y fecha, y que sea anterior a hoy
+    // Validar que la reserva exista con ese email y fecha, y que sea anterior a hoy
     $stmt = $conn->prepare("SELECT r.id_reserva 
                             FROM reserva r
                             JOIN cliente c ON r.id_cliente = c.id_cliente
-                            WHERE c.nombre = ? AND r.fecha = ? AND r.fecha < CURDATE()");
-    $stmt->bind_param("ss", $nombre, $fecha_reserva);
+                            WHERE c.email = ? AND r.fecha = ? AND r.fecha < CURDATE()");
+    $stmt->bind_param("ss", $email, $fecha_reserva);
     $stmt->execute();
     $resultado = $stmt->get_result();
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo '<div class="alert alert-danger mt-4">Error al guardar el testimonio.</div>';
         }
     } else {
-        echo '<div class="alert alert-danger mt-4">No encontramos una reserva con ese nombre y fecha, o aún no ha ocurrido.</div>';
+        echo '<div class="alert alert-danger mt-4">No encontramos una reserva con ese email y fecha, o aún no ha ocurrido.</div>';
     }
 }
 ?>
@@ -108,8 +108,8 @@ if ($resultado->num_rows > 6) { // Mostrar paginación si hay más de 6 testimon
                 <div class="row g-3">
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
-                            <label for="nombre">Tu nombre (como en la reserva)</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                            <label for="email">Tu email (como en la reserva)</label>
                         </div>
                     </div>
                     <div class="col-md-6">

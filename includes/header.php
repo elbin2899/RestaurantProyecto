@@ -20,7 +20,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 <a href="index.php#menu" class="nav-item nav-link">Menú</a>
                 <a href="testimonial.php#testimonial" class="nav-item nav-link <?php if($currentPage == 'testimonial.php') echo 'active'; ?>">Reseñas</a>
              
-            <!--<div class="nav-item dropdown">
+            <!--<div class="nav-item dropdown"> antiguo Dropdown
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Páginas</a>
                 <div class="dropdown-menu m-0">
                     <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#loginModal">
