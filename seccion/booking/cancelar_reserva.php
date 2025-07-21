@@ -99,7 +99,7 @@ if ($stmt_update->execute()) {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'jafet409@gmail.com'; // Tu email
-        $mail->Password = 'tnfr rlbo hhwj fuxk'; // Tu contraseña de aplicación
+        $mail->Password = ''; // Tu contraseña de aplicación
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
         $mail->SMTPOptions = array(
