@@ -110,7 +110,7 @@ try {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'jafet409@gmail.com'; // Cambiar por tu email
+            $mail->Username = ''; // Cambiar por tu email
             $mail->Password = ''; // Usar contraseña de aplicación
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
@@ -125,8 +125,8 @@ try {
             $mail->CharSet = 'UTF-8';
             
             // Configurar email para el CLIENTE
-            $mail->setFrom('jafet409@gmail.com', 'Equipo de Soporte');
-            $mail->addAddress('jafet409@gmail.com'); // Dirección del usuario registrado
+            $mail->setFrom('', 'Equipo de Soporte');
+            $mail->addAddress(''); // Dirección del usuario registrado
             $mail->addAddress($email, $nombre);
             $mail->Subject = 'Confirmación de reserva en Cuisine X';
             
