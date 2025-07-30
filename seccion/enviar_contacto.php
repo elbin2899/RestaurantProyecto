@@ -42,7 +42,7 @@ try {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'jafet409@gmail.com';
+    $mail->Username = '';
     $mail->Password = '';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
@@ -58,7 +58,7 @@ try {
 
     // Configurar remitente y destinatario
     $mail->setFrom($email, $name);
-    $mail->addAddress('jafet409@gmail.com'); // Tu dirección de correo
+    $mail->addAddress(''); // Tu dirección de correo
     
     // Asunto y cuerpo del mensaje
     $mail->Subject = $subject;
